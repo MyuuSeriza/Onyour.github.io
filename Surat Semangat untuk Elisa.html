@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surat Semangat untuk Elisa</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg1:#ffd6e7;--bg2:#ffb3d1;--ink:#6b1f45;--soft:#fff0f6;--pink:#ff5c9d;--bubble:#ffffff;--shadow:rgba(214,51,132,.28);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#f7a8cb;--bg2:#ee86b6;--ink:#5a1238;}}
+:root[data-theme="dark"]{--bg1:#f7a8cb;--bg2:#ee86b6;--ink:#5a1238;}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;height:100%;overflow:hidden;font-family:'Fredoka',system-ui,sans-serif;color:var(--ink);
+  background:radial-gradient(circle at 20% 15%,var(--soft) 0,transparent 35%),linear-gradient(160deg,var(--bg1),var(--bg2));
+  touch-action:none;-webkit-user-select:none;user-select:none}
+h1{position:absolute;inset:18% 0 auto;margin:0;text-align:center;font-family:'Caveat',cursive;font-size:clamp(2.4rem,9vw,4.2rem);line-height:1.05;pointer-events:none;padding:0 16px}
+.sub{position:absolute;top:calc(18% + clamp(5rem,18vw,8rem));left:0;right:0;text-align:center;font-size:1rem;opacity:.8;pointer-events:none;padding:0 24px}
+.ic{position:absolute;left:0;top:0;font-size:clamp(2.4rem,9vw,3.6rem);cursor:grab;touch-action:none;will-change:transform;z-index:2;filter:drop-shadow(0 6px 6px var(--shadow))}
+.ic.drag{cursor:grabbing;z-index:5}
+.ic span{display:block;animation:bob 3s ease-in-out infinite;transition:transform .15s}
+.ic.pop span{transform:scale(1.35) rotate(-10deg)}
+@keyframes bob{50%{transform:translateY(-8px) rotate(4deg)}}
+.hint{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-size:.95rem;opacity:.75;pointer-events:none}
+/* notif */
+.notif{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));width:min(92vw,400px);transform:translate(-50%,-160%);z-index:20;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-radius:22px;padding:12px 14px;display:flex;gap:12px;align-items:center;
+  box-shadow:0 10px 30px var(--shadow);cursor:pointer;transition:transform .6s cubic-bezier(.2,1.4,.4,1);touch-action:manipulation}
+.notif.show{transform:translate(-50%,0);animation:wig 1.6s .7s ease-in-out infinite}
+@keyframes wig{0%,60%,100%{rotate:0deg}70%{rotate:-2deg}80%{rotate:2deg}90%{rotate:-1deg}}
+.notif .em{font-size:2rem;background:var(--pink);border-radius:14px;width:48px;height:48px;display:grid;place-items:center;flex:none}
+.notif b{display:block;font-weight:600}.notif small{opacity:.7}
+.badge{margin-left:auto;background:var(--pink);color:#fff;border-radius:99px;min-width:24px;height:24px;display:grid;place-items:center;font-size:.8rem}
+/* chat */
+.ov{position:fixed;inset:0;z-index:30;background:rgba(107,31,69,.35);display:none;align-items:center;justify-content:center;padding:12px}
+.ov.on{display:flex}
+.phone{width:min(100%,420px);height:min(86%,640px);background:var(--soft);border-radius:28px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(107,31,69,.4);transform:scale(.6);opacity:0;transition:.4s cubic-bezier(.2,1.3,.4,1)}
+.ov.on .phone{transform:none;opacity:1}
+.top{background:var(--pink);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.av{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.4rem}
+.top b{display:block}.top small{opacity:.9}
+.x{margin-left:auto;background:rgba(255,255,255,.25);border:0;color:#fff;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer}
+.msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;touch-action:pan-y}
+.b{max-width:82%;background:var(--bubble);padding:10px 14px;border-radius:20px 20px 20px 6px;box-shadow:0 3px 8px var(--shadow);align-self:flex-start;line-height:1.4;animation:in .35s cubic-bezier(.2,1.5,.4,1)}
+.b.me{align-self:flex-end;background:var(--pink);color:#fff;border-radius:20px 20px 6px 20px}
+@keyframes in{from{transform:scale(.4) translateY(14px);opacity:0}}
+.dots{display:flex;gap:4px;padding:12px 14px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--pink);animation:d 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes d{50%{transform:translateY(-6px);opacity:.4}}
+.bar{padding:10px 14px 14px;display:flex;gap:8px;justify-content:center;background:#fff}
+.bar button{font:inherit;border:0;border-radius:99px;padding:10px 18px;background:var(--pink);color:#fff;cursor:pointer;font-weight:500;touch-action:manipulation}
+.bar button:focus-visible,.x:focus-visible,.notif:focus-visible,.ic:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.hrt{position:fixed;pointer-events:none;z-index:40;font-size:1.6rem;animation:fl 1.6s ease-out forwards}
+@keyframes fl{to{transform:translate(var(--dx),-70vh) scale(1.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ic span,.notif.show,.hrt{animation:none}}
+</style>
+</head>
+<body>
+<h1>Ada surat untukmu, Elisa 💗</h1>
+<p class="sub">Main-main dulu ya. Sentuh dan geser ikon-ikonnya.</p>
+<p class="hint">Ketuk ikon untuk bunyi, geser untuk memindahkan</p>
+
+<div class="notif" id="notif" role="button" tabindex="0" aria-label="Buka surat">
+  <div class="em">💌</div>
+  <div><b>Surat baru untuk Elisa</b><small>Ketuk untuk membuka</small></div>
+  <div class="badge">1</div>
+</div>
+
+<div class="ov" id="ov" role="dialog" aria-label="Pesan semangat">
+  <div class="phone">
+    <div class="top"><div class="av">💌</div><div><b>Pesan Semangat</b><small>untuk Elisa</small></div><button class="x" id="x" aria-label="Tutup">✕</button></div>
+    <div class="msgs" id="msgs"></div>
+    <div class="bar"><button id="love">Kirim peluk 🤗</button><button id="again">Baca lagi 🔁</button></div>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+let AC;
+function ac(){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();}catch(e){}return AC}
+function tone(f,d=.18,type='sine',v=.18,delay=0){const c=ac();if(!c)return;const t=c.currentTime+delay,o=c.createOscillator(),g=c.createGain();
+  o.type=type;o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g).connect(c.destination);o.start(t);o.stop(t+d)}
+const sounds={
+  '💌':()=>{tone(880,.2,'sine',.2);tone(1175,.3,'sine',.2,.12)},
+  '🌸':()=>{[523,659,784].forEach((f,i)=>tone(f,.25,'sine',.16,i*.08))},
+  '⭐':()=>{[1047,1319,1568,2093].forEach((f,i)=>tone(f,.2,'triangle',.12,i*.06))},
+  '🎀':()=>{tone(700,.12,'square',.07);tone(940,.16,'square',.07,.1)},
+  '🧸':()=>{tone(260,.22,'sawtooth',.08);tone(220,.3,'sawtooth',.08,.12)},
+  '🍀':()=>{tone(392,.15,'triangle',.18);tone(494,.15,'triangle',.18,.1);tone(587,.3,'triangle',.18,.2)},
+  '📚':()=>{tone(150,.08,'square',.12);tone(120,.12,'square',.12,.09)},
+  '☁️':()=>{tone(330,.5,'sine',.12);tone(415,.5,'sine',.1,.1)},
+  '🦋':()=>{for(let i=0;i<5;i++)tone(900+i%2*200,.06,'sine',.1,i*.07)},
+  '🍭':()=>{tone(1000,.1,'sine',.18);tone(600,.2,'sine',.18,.08)},
+  '🙏':()=>{tone(440,.6,'sine',.12);tone(660,.7,'sine',.1,.1)},
+  '💖':()=>{tone(523,.15,'sine',.2);tone(659,.15,'sine',.2,.12);tone(784,.35,'sine',.2,.24)}
+};
+const pop=()=>tone(600+Math.random()*300,.1,'sine',.15);
+
+/* draggable icons */
+const list=['🌸','⭐','🎀','🧸','🍀','📚','☁️','🦋','🍭','🙏','💖','💌'];
+const zones=[[.06,.04],[.72,.07],[.12,.42],[.74,.40],[.40,.56],[.06,.64],[.70,.62],[.38,.72],[.20,.80],[.62,.80],[.45,.04],[.84,.24]];
+list.forEach((e,i)=>{
+  const el=document.createElement('div');el.className='ic';el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label','Ikon '+e);
+  el.innerHTML='<span style="animation-delay:'+(i*.25)+'s">'+e+'</span>';document.body.appendChild(el);
+  let x=zones[i][0]*innerWidth,y=zones[i][1]*innerHeight,sx,sy,ox,oy,moved=false,down=false;
+  const put=()=>{x=Math.max(0,Math.min(innerWidth-56,x));y=Math.max(0,Math.min(innerHeight-60,y));el.style.transform='translate('+x+'px,'+y+'px)'};
+  put();
+  const hit=()=>{sounds[e]();el.classList.add('pop');setTimeout(()=>el.classList.remove('pop'),180)};
+  el.addEventListener('pointerdown',ev=>{down=true;moved=false;sx=ev.clientX;sy=ev.clientY;ox=x;oy=y;el.setPointerCapture(ev.pointerId);el.classList.add('drag');ac()});
+  el.addEventListener('pointermove',ev=>{if(!down)return;const dx=ev.clientX-sx,dy=ev.clientY-sy;
+    if(Math.hypot(dx,dy)>6){if(!moved){moved=true;tone(500,.08,'sine',.1)}x=ox+dx;y=oy+dy;put()}});
+  const up=()=>{if(!down)return;down=false;el.classList.remove('drag');hit()};
+  el.addEventListener('pointerup',up);el.addEventListener('pointercancel',()=>{down=false;el.classList.remove('drag')});
+  el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();hit()}});
+  addEventListener('resize',put);
+});
+
+/* notif */
+const notif=$('#notif');
+setTimeout(()=>{notif.classList.add('show');sounds['💌']()},900);
+setInterval(()=>{if(!$('#ov').classList.contains('on'))sounds['💌']()},9000);
+
+/* chat */
+const lines=['Semangat Kuis nya Elisa 💪','Semangat selalu kuis nyaaa ✨','Semoga kamu dapat mengerjakan kuis nya dengan mudah yaa 🌸','jangan lupa berdoa okeee 🙏','and still be calm in your quiz, alright? 💗'];
+let run=0;
+async function play(){
+  const id=++run,box=$('#msgs');box.innerHTML='';
+  for(const t of lines){
+    if(id!==run)return;
+    const d=document.createElement('div');d.className='b dots';d.innerHTML='<i></i><i></i><i></i>';box.appendChild(d);box.scrollTop=box.scrollHeight;
+    await new Promise(r=>setTimeout(r,900));
+    if(id!==run)return;
+    d.className='b';d.textContent=t;pop();box.scrollTop=box.scrollHeight;
+    await new Promise(r=>setTimeout(r,350));
+  }
+}
+function open_(){ac();$('#ov').classList.add('on');sounds['🌸']();play()}
+function close_(){run++;$('#ov').classList.remove('on');tone(400,.15)}
+notif.addEventListener('click',open_);
+notif.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open_()}});
+$('#x').addEventListener('click',close_);
+$('#ov').addEventListener('click',e=>{if(e.target.id==='ov')close_()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#ov').classList.contains('on'))close_()});
+$('#again').addEventListener('click',()=>{tone(700,.1);play()});
+$('#love').addEventListener('click',()=>{
+  sounds['💖']();
+  const me=document.createElement('div');me.className='b me';me.textContent='Terima kasih, aku siap! 🤗';$('#msgs').appendChild(me);$('#msgs').scrollTop=1e5;
+  for(let i=0;i<16;i++){const h=document.createElement('div');h.className='hrt';h.textContent=['💗','💖','🌸','⭐'][i%4];
+    h.style.left=(10+Math.random()*80)+'vw';h.style.bottom='10vh';h.style.setProperty('--dx',(Math.random()*120-60)+'px');h.style.animationDelay=(Math.random()*.4)+'s';
+    document.body.appendChild(h);setTimeout(()=>h.remove(),2200)}
+});
+</script>
+</body>
+</html>
